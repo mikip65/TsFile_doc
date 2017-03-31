@@ -83,7 +83,7 @@ The SparkSQL Table Structure is as follow:
 
 	```scala
 	// import this library and Spark
-	import com.corp.delta.TsFile.spark._
+	import com.corp.delta.tsfile.spark._
 	import org.apache.spark.sql.SparkSession
 
 	val spark = SparkSession.builder().master("local").getOrCreate()
@@ -104,7 +104,7 @@ The SparkSQL Table Structure is as follow:
 	```scala
 	val spark = SparkSession.builder().master("local").getOrCreate()
 	val df = spark.read
-	      .format("com.corp.delta.TsFile")
+	      .format("com.corp.delta.tsfile")
 	      .load("test.ts")
 
 	df.createOrReplaceTempView("TsFile_table")
@@ -119,7 +119,7 @@ The SparkSQL Table Structure is as follow:
 	val spark = SparkSession.builder().master("local").getOrCreate()
 
 	//create a table in SparkSQL and build relation with a TsFile
-	spark.sql("create temporary view TsFile using com.corp.delta.TsFile options(path = \"test.ts\")")
+	spark.sql("create temporary view TsFile using com.corp.delta.tsfile options(path = \"test.ts\")")
 
 	spark.sql("select * from TsFile where sensor_1 > 1.2").show()
 
@@ -132,7 +132,7 @@ This library can be used in `spark-shell`.
 ```
 $ bin/spark-shell --jars tsfile-spark-0.1.0-jar-with-dependencies.jar
 
-scala> sql("CREATE TEMPORARY TABLE TsFile_table USING com.corp.delta.TsFile OPTIONS (path \"hdfs://localhost:9000/test.TsFile\")")
+scala> sql("CREATE TEMPORARY TABLE TsFile_table USING com.corp.delta.tsfile OPTIONS (path \"hdfs://localhost:9000/test.ts\")")
 
 scala> sql("select * from TsFile_table where sensor_1 > 1.2").show()
 ```
