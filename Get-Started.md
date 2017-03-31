@@ -1,4 +1,3 @@
-## Get Started
 
 Now, you’re ready to start doing some awesome things with TsFile. This section demonstrates the detailed usage of TsFile.
 
