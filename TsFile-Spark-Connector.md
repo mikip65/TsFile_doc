@@ -89,7 +89,7 @@ The SparkSQL Table Structure is as follow:
 	val spark = SparkSession.builder().master("local").getOrCreate()
 
 	//read data in TsFile and create a table
-	val df = spark.read.TsFile("test.ts")
+	val df = spark.read.tsfile("test.ts")
 	df.createOrReplaceTempView("TsFile_table")
 
 	//query with filter
