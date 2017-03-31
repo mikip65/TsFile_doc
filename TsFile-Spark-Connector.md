@@ -107,7 +107,6 @@ The SparkSQL Table Structure is as follow:
 	      .format("com.corp.delta.tsfile")
 	      .load("test.ts")
 
-	df.createOrReplaceTempView("TsFile_table")
 
 	df.filter("sensor_1 > 1.2").show()
 
