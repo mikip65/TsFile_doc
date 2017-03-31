@@ -130,7 +130,7 @@ The SparkSQL Table Structure is as follow:
 This library can be used in `spark-shell`.
 
 ```
-$ bin/spark-shell --jars TsFile-spark-connector.jar
+$ bin/spark-shell --jars tsfile-spark-0.1.0-jar-with-dependencies.jar
 
 scala> sql("CREATE TEMPORARY TABLE TsFile_table USING com.corp.delta.TsFile OPTIONS (path \"hdfs://localhost:9000/test.TsFile\")")
 
