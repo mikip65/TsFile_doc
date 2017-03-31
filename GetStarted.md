@@ -378,7 +378,7 @@ The method ```query()``` can be used to read from a TsFile. In class ```TsFile``
 	>
 	> The virtual "Table" is:
 	>	<table style="text-align:center">
-	<tr><th>timestamp</th><th>device\_1.sensor\_1</th><th>device\_1.sensor\_2</th><th>device\_1.sensor\_3</th></tr>
+	<tr><th>timestamp</th><th>device_1.sensor_1</th><th>device_1.sensor_2</th><th>device_1.sensor_3</th></tr>
 	<tr><td>1</td><td>1.2</td><td>20</td><td>null</td></tr>
 	<tr><td>2</td><td>null</td><td>20</td><td>50</td></tr>
 	<tr><td>3</td><td>1.4</td><td>21</td><td>null</td></tr>
@@ -390,7 +390,7 @@ The method ```query()``` can be used to read from a TsFile. In class ```TsFile``
 	</table>
 	>Then the result is:
 	>	<table style="text-align:center">
-	<tr><th>timestamp</th><th>device\_1.sensor\_1</th><th>device\_1.sensor\_3</th></tr>
+	<tr><th>timestamp</th><th>device_1.sensor_1</th><th>device_1.sensor_3</th></tr>
 	<tr><td>1</td><td>1.2</td><td>20</td></tr>
 	<tr><td>2</td><td>null</td><td>20</tr>
 	</table>
