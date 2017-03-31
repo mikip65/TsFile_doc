@@ -63,14 +63,14 @@ The SparkSQL Table Structure is as follow:
 <center>
 	<table style="text-align:center">
 	<tr><th>time(LongType)</th><th>delta_object(StringType)</th><th>sensor\_1(FloatType)</th><th>sensor\_2(IntType)</th><th>sensor\_3(IntType)</th></tr>
-	<tr><td>1</td><td>device\_1</td><td>1.2</td><td>20</td><td>null</td></tr>
-	<tr><td>2</td><td>device\_1</td><td>null</td><td>20</td><td>50</td></tr>
-	<tr><td>3</td><td>device\_1</td><td>1.4</td><td>21</td><td>null</td></tr>
-	<tr><td>4</td><td>device\_1</td><td>null</td><td>20</td><td>51</td></tr>
-	<tr><td>5</td><td>device\_1</td><td>1.1</td><td>null</td><td>null</td></tr>
-	<tr><td>6</td><td>device\_1</td><td>null</td><td>null</td><td>52</td></tr>
-	<tr><td>7</td><td>device\_1</td><td>1.8</td><td>null</td><td>null</td></tr>
-	<tr><td>8</td><td>device\_1</td><td>null</td><td>null</td><td>53</td></tr>
+	<tr><td>1</td><td>device_1</td><td>1.2</td><td>20</td><td>null</td></tr>
+	<tr><td>2</td><td>device_1</td><td>null</td><td>20</td><td>50</td></tr>
+	<tr><td>3</td><td>device_1</td><td>1.4</td><td>21</td><td>null</td></tr>
+	<tr><td>4</td><td>device_1</td><td>null</td><td>20</td><td>51</td></tr>
+	<tr><td>5</td><td>device_1</td><td>1.1</td><td>null</td><td>null</td></tr>
+	<tr><td>6</td><td>device_1</td><td>null</td><td>null</td><td>52</td></tr>
+	<tr><td>7</td><td>device_1</td><td>1.8</td><td>null</td><td>null</td></tr>
+	<tr><td>8</td><td>device_1</td><td>null</td><td>null</td><td>53</td></tr>
 	</table>
 
 </center>
