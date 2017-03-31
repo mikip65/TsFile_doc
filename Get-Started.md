@@ -28,7 +28,7 @@ Table 1 illustates a set of time-series data. The set showed in the following ta
 Formally, one line of data consists of a `deltaObject_id`, a timestamp which indicates the milliseconds since January 1, 1970, 00:00:00, and several data pairs composed of `measurement_id` and corresponding `value`. All data pairs in one line belong to this `deltaObject_id` and have the same timestamp. If one of the `measurements` doesn't have a `value` in the `timestamp`, use a space instead(Actually, TsFile does not store null values). Its format is shown as follow:
 
 ```java
-deltaObject_id, timestamp, <measurement_id, value>,...
+deltaObject_id, timestamp, <measurement_id, value>...
 ```
 
 An example is illustrated as follow. In this example, the data type of three measurements are  `INT32`, `FLOAT` and  `ENUMS` respectively.
