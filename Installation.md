@@ -15,7 +15,9 @@ There are two ways to use TsFile in your own project.
 		Then, all the jars can be get in folder named `lib/`. Import `lib/*.jar` to your project.
 	
 * Using as a maven dependency: 
+
         Comiple source codes and deploy to your local repository in three steps:
+
 	* Get the source codes
 	
 		```
