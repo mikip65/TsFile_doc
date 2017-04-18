@@ -1,8 +1,10 @@
 ## Installation
 
+Before started, maven should be installed. See <a href="https://maven.apache.org/install.html">How to install maven</a>
+
 There are two ways to use TsFile in your own project.
 
-* For non-maven users:
+* Using jars:
 	* Compile the source codes and build to jars
 	
 		```
@@ -12,7 +14,7 @@ There are two ways to use TsFile in your own project.
 		```
 		Then, all the jars can be get in folder named `lib/`. Import `lib/*.jar` to your project.
 	
-* For maven users: Comiple source codes and deploy to your local repository in three steps:
+* Using as a maven dependency: Comiple source codes and deploy to your local repository in three steps:
 	* Get the source codes
 	
 		```
