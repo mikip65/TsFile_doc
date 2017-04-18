@@ -4,7 +4,7 @@ Before started, maven should be installed. See <a href="https://maven.apache.org
 
 There are two ways to use TsFile in your own project.
 
-* Using jars:
+* Using as jars:
 	* Compile the source codes and build to jars
 	
 		```
