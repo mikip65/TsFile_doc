@@ -16,7 +16,7 @@ There are two ways to use TsFile in your own project.
 	
 * Using as a maven dependency: 
 
-Comiple source codes and deploy to your local repository in three steps:
+	Comiple source codes and deploy to your local repository in three steps:
 
 	* Get the source codes
 	
