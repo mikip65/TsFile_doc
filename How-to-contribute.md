@@ -43,4 +43,4 @@
 
 8. Wait a few minutes and you will see tsfile project structure at left sidebar
 
-![](http://tsfile.org/static/github-img/IDE/6.png)<
+![](http://tsfile.org/static/github-img/IDE/6.png)
