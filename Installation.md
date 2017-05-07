@@ -33,7 +33,7 @@ There are two ways to use TsFile in your own project.
 	
 	  ```
 		<dependency>
-		   <groupId>com.corp.tsfile</groupId>
+		   <groupId>cn.edu.thu</groupId>
 		   <artifactId>tsfile</artifactId>
 		   <version>0.1.0</version>
 		</dependency>
