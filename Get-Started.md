@@ -98,14 +98,13 @@ An example is shown as follow:
             "measurement_id": "m3",
             "data_type": "ENUMS",
             "encoding": "BITMAP",
-            "compressor": "SNAPPY",
-            "enum_values":["MAN","WOMAN"],
-            "max_point_number":3
+            "enum_values":["MAN","WOMAN"]
         },
         {
             "measurement_id": "m4",
-            "data_type": "BIGDECIMAL",
-            "encoding": "RLE",
+            "data_type": "INT64",
+            "encoding": "RLE",            
+            "compressor": "SNAPPY"
         }
     ],
     "row_group_size": 8388608,
