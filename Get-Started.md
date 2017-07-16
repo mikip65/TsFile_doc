@@ -135,7 +135,7 @@ import org.json.JSONObject;
 
 import cn.edu.thu.tsfile.common.utils.RandomAccessOutputStream;
 import cn.edu.thu.tsfile.common.utils.TSRandomAccessFileWriter;
-import cn.edu.thu.tsfile.timeseries.FileFormat.TsFile;
+import cn.edu.thu.tsfile.timeseries.basis.TsFile;
 import cn.edu.thu.tsfile.timeseries.write.record.DataPoint;
 import cn.edu.thu.tsfile.timeseries.write.record.TSRecord;
 import cn.edu.thu.tsfile.timeseries.write.record.datapoint.FloatDataPoint;
