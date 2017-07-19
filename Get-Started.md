@@ -116,12 +116,12 @@ An example is shown as follow:
 | key      | is required|     description | allowed values|
 | :-------- | --------:| :------:| :------:|
 | measurement_id    |required	|name of the time series |any combination of letters, numbers and other symbols like `_` `.`  |
-| data_type    		|required	|data type|`BOOLEAN`, `INT32`, `INT64`, `FLOAT`, `DOUBLE`, `ENUM` and `BYTE_ARRAY`(namely `String`)|
+| data_type    		|required	|data type|`BOOLEAN`, `INT32`, `INT64`, `FLOAT`, `DOUBLE`, `ENUM` and `TEXT`(namely `String`)|
 | encoding    		|required	| encoding approach for time domain. |`PLAIN`(for all data types), {`TS_2DIFF`, `RLE`}(for `INT32`, `INT64`, `FLOAT`, `DOUBLE`, `ENUM`), `BITMAP`(`ENUM`)|
 | enum_values 		|required if `data_type` is `ENUM`	| the fields of `ENUM`  	|  in format of `["MAN","WOMAN"]`|
 | max\_point\_number    		|optional	| the number of reserved decimal digits. It's useful if the data type is `FLOAT`, `DOUBLE` or `BigDecimal`| natural number, defaults to 2|
 | compressor    		|optional	| the type of compression.| `SNAPPY` and `UNCOMPRESSED`, defaults to `UNCOMPRESSED`|
-|max\_string\_length	|optional	| maximal length of string. It's useful if the data type is `BYTE_ARRAY`.  | positive integer, defaults to 128|
+|max\_string\_length	|optional	| maximal length of string. It's useful if the data type is `TEXT`.  | positive integer, defaults to 128|
 
 
 
