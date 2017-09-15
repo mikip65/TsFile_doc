@@ -426,14 +426,13 @@ The method ```query()``` can be used to read from a TsFile. In class ```TsFile``
 #### Example
 
 ```java
-import cn.edu.thu.tsfile.timeseries.basis.TsFile;
-import cn.edu.thu.tsfile.timeseries.filter.definition.FilterExpression;
-import cn.edu.thu.tsfile.timeseries.filter.definition.FilterFactory;
-import cn.edu.thu.tsfile.timeseries.filter.definition.filterseries.FilterSeriesType;
-import cn.edu.thu.tsfile.timeseries.read.LocalFileInput;
-import cn.edu.thu.tsfile.timeseries.read.qp.Path;
-import cn.edu.thu.tsfile.timeseries.read.query.QueryDataSet;
-import cn.edu.thu.tsfile.timeseries.write.exception.WriteProcessException;
+import cn.edu.tsinghua.tsfile.timeseries.basis.TsFile;
+import cn.edu.tsinghua.tsfile.timeseries.filter.definition.FilterExpression;
+import cn.edu.tsinghua.tsfile.timeseries.filter.definition.FilterFactory;
+import cn.edu.tsinghua.tsfile.timeseries.filter.definition.filterseries.FilterSeriesType;
+import cn.edu.tsinghua.tsfile.timeseries.read.LocalFileInput;
+import cn.edu.tsinghua.tsfile.timeseries.read.qp.Path;
+import cn.edu.tsinghua.tsfile.timeseries.read.query.QueryDataSet;
 
 import java.io.IOException;
 import java.util.ArrayList;
