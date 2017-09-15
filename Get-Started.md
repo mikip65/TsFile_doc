@@ -500,3 +500,16 @@ public class TsFileReadTest {
     }
 }
 ```
+
+### User-specified config file path
+
+Default config file tsfile-format.properties is located at tsfile/conf/ directory. If you want to use your own path, you can:
+```Java
+System.setProperty(SystemConstant.TSFILE_CONF, "your config file path");
+```
+and then call:
+```Java
+TSFileConfig config = TSFileDescriptor.getInstance().getConfig();
+```
+
+
