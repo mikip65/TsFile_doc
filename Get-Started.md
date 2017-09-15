@@ -133,13 +133,13 @@ import java.io.File;
 import java.util.ArrayList;
 import org.json.JSONObject;
 
-import cn.edu.thu.tsfile.common.utils.RandomAccessOutputStream;
-import cn.edu.thu.tsfile.common.utils.TSRandomAccessFileWriter;
-import cn.edu.thu.tsfile.timeseries.basis.TsFile;
-import cn.edu.thu.tsfile.timeseries.write.record.DataPoint;
-import cn.edu.thu.tsfile.timeseries.write.record.TSRecord;
-import cn.edu.thu.tsfile.timeseries.write.record.datapoint.FloatDataPoint;
-import cn.edu.thu.tsfile.timeseries.write.record.datapoint.IntDataPoint;
+import cn.edu.tsinghua.tsfile.common.utils.RandomAccessOutputStream;
+import cn.edu.tsinghua.tsfile.common.utils.TSRandomAccessFileWriter;
+import cn.edu.tsinghua.tsfile.timeseries.basis.TsFile;
+import cn.edu.tsinghua.tsfile.timeseries.write.record.DataPoint;
+import cn.edu.tsinghua.tsfile.timeseries.write.record.TSRecord;
+import cn.edu.tsinghua.tsfile.timeseries.write.record.datapoint.FloatDataPoint;
+import cn.edu.tsinghua.tsfile.timeseries.write.record.datapoint.IntDataPoint;
 
 public class TsFileWriteTest {
 
