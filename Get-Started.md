@@ -132,7 +132,7 @@ An example is shown as follow:
 
 #### Example for writing TsFile
 
-version 0.1.2
+version 0.2.0
 
 ```
 import java.io.File;
@@ -431,7 +431,7 @@ The method ```query()``` can be used to read from a TsFile. In class ```TsFile``
 	>
 	> For example, the query parameters is :
 	>
-	> * paths : ["device\_1.sensor\_1","device\_1.sensor\_2"]
+	> * paths : ["device\_1.sensor\_1","device\_1.sensor\_3"]
 	> * timeFilter : timestamp <= 3
 	> * valueFilter : device\_1.sensor\_3 <= 51 or device\_1.sensor\_1 < 1.4
 	>
