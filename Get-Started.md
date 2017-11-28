@@ -477,21 +477,24 @@ The method ```query()``` can be used to read from a TsFile. In class ```TsFile``
 #### Example
 
 ```java
+package cn.edu.tsinghua.tsfile.timeseries.demo;
+
 import cn.edu.tsinghua.tsfile.timeseries.basis.TsFile;
 import cn.edu.tsinghua.tsfile.timeseries.filter.definition.FilterExpression;
 import cn.edu.tsinghua.tsfile.timeseries.filter.definition.FilterFactory;
 import cn.edu.tsinghua.tsfile.timeseries.filter.definition.filterseries.FilterSeriesType;
 import cn.edu.tsinghua.tsfile.timeseries.read.TsRandomAccessLocalFileReader;
-import cn.edu.tsinghua.tsfile.timeseries.read.qp.Path;
 import cn.edu.tsinghua.tsfile.timeseries.read.query.QueryDataSet;
+import cn.edu.tsinghua.tsfile.timeseries.read.support.Path;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TsFileReadTest {
+public class ReadTest {
 
-    public static void main(String args[]) throws IOException, WriteProcessException {
-        String path = "test.ts";
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		String path = "test.ts";
 
         // read example : no filter
         TsRandomAccessLocalFileReader input = new TsRandomAccessLocalFileReader(path);
@@ -548,8 +551,10 @@ public class TsFileReadTest {
         while (queryDataSet.hasNextRecord()) {
             System.out.println(queryDataSet.getNextRecord());
         }
-    }
+	}
+
 }
+
 ```
 
 ### User-specified config file path
