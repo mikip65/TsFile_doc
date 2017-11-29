@@ -139,8 +139,7 @@ import java.io.File;
 import java.util.ArrayList;
 import org.json.JSONObject;
 
-import cn.edu.tsinghua.tsfile.common.utils.RandomAccessOutputStream;
-import cn.edu.tsinghua.tsfile.common.utils.TSRandomAccessFileWriter;
+import cn.edu.tsinghua.tsfile.common.utils.TsRandomAccessFileWriter;
 import cn.edu.tsinghua.tsfile.timeseries.basis.TsFile;
 import cn.edu.tsinghua.tsfile.timeseries.write.record.DataPoint;
 import cn.edu.tsinghua.tsfile.timeseries.write.record.TSRecord;
@@ -174,7 +173,7 @@ public class TsFileWriteTest {
 	                "}";
 			JSONObject schemaObject = new JSONObject(s);
 
-			TSRandomAccessFileWriter output = new RandomAccessOutputStream(new File(path));
+			TsRandomAccessFileWriter output = new TsRandomAccessFileWriter(new File(path));
 			TsFile tsFile = new TsFile(output, schemaObject);
 
 			tsFile.writeLine("device_1,1, sensor_1, 1.2, sensor_2, 20, sensor_3,");
@@ -206,9 +205,9 @@ public class TsFileWriteTest {
 					add(new IntDataPoint("sensor_3", 31));
 				}
 			};
-			tsFile.writeLine(tsRecord1);
-			tsFile.writeLine(tsRecord2);
-			tsFile.writeLine(tsRecord3);
+			tsFile.writeRecord(tsRecord1);
+			tsFile.writeRecord(tsRecord2);
+			tsFile.writeRecord(tsRecord3);
 
 			tsFile.close();
 		} catch (Throwable e) {
@@ -477,7 +476,6 @@ The method ```query()``` can be used to read from a TsFile. In class ```TsFile``
 #### Example
 
 ```java
-
 import cn.edu.tsinghua.tsfile.timeseries.basis.TsFile;
 import cn.edu.tsinghua.tsfile.timeseries.filter.definition.FilterExpression;
 import cn.edu.tsinghua.tsfile.timeseries.filter.definition.FilterFactory;
@@ -538,11 +536,11 @@ public class TsFileReadTest {
 		}
 		System.out.println("------------");
 
-		// time filter : 4 <= time < 10, value filter : device_1.sensor_2 > 20
+		// time filter : 4 <= time < 10, value filter : device_1.sensor_3 > 20
 		timeFilter = FilterFactory.and(FilterFactory.gtEq(FilterFactory.timeFilterSeries(), 4L, true),
 				FilterFactory.ltEq(FilterFactory.timeFilterSeries(), 10L, false));
 		valueFilter = FilterFactory
-				.gtEq(FilterFactory.intFilterSeries("device_1", "sensor_3", FilterSeriesType.VALUE_FILTER), 21, true);
+				.gtEq(FilterFactory.intFilterSeries("device_1", "sensor_3", FilterSeriesType.VALUE_FILTER), 20, false);
 		input = new TsRandomAccessLocalFileReader(path);
 		readTsFile = new TsFile(input);
 		paths = new ArrayList<>();
@@ -556,8 +554,6 @@ public class TsFileReadTest {
 	}
 
 }
-
-
 ```
 
 ### User-specified config file path
