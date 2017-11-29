@@ -132,7 +132,17 @@ An example is shown as follow:
 
 #### Example for writing TsFile
 
+You should first install tsfile to your local maven repository.
+
+```
+> git clone https://github.com/thulab/tsfile.git
+> cd tsfile/
+> mvn clean install -Dmaven.test.skip=true
+```
+
 version 0.2.0
+
+##### Writing Tsfile by using json schema
 
 ```java
 import java.io.File;
@@ -217,7 +227,8 @@ public class TsFileWriteTest {
 	}
 }
 ```
-version 0.2.0-SNAPSHOT
+
+##### Writing Tsfile directly
 
 ```java
 import java.io.File;
@@ -472,6 +483,14 @@ The method ```query()``` can be used to read from a TsFile. In class ```TsFile``
 		> In some distributed file systems(e.g. HDFS), a file is split into severval parts which are called "Blocks" and stored in different nodes. Executing a query paralleled in each nodes involved makes better efficiency. Thus Partial Query is needed. Paritial Query only selects the results stored in the part split by ```QueryConstant.PARTITION_START_OFFSET``` and ```QueryConstant.PARTITION_END_OFFSET``` for a TsFile.
 
 #### Example
+
+You should first install tsfile to your local maven repository.
+
+```
+> git clone https://github.com/thulab/tsfile.git
+> cd tsfile/
+> mvn clean install -Dmaven.test.skip=true
+```
 
 ```java
 import cn.edu.tsinghua.tsfile.timeseries.basis.TsFile;
