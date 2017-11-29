@@ -134,7 +134,7 @@ An example is shown as follow:
 
 version 0.2.0
 
-```
+```java
 import java.io.File;
 import java.util.ArrayList;
 import org.json.JSONObject;
@@ -220,46 +220,44 @@ public class TsFileWriteTest {
 version 0.2.0-SNAPSHOT
 
 ```java
-
 import java.io.File;
-import java.util.ArrayList;
-import org.json.JSONObject;
 
-import cn.edu.tsinghua.tsfile.common.utils.RandomAccessOutputStream;
-import cn.edu.tsinghua.tsfile.common.utils.TSRandomAccessFileWriter;
-import cn.edu.tsinghua.tsfile.timeseries.basis.TsFile;
+import cn.edu.tsinghua.tsfile.file.metadata.enums.TSDataType;
+import cn.edu.tsinghua.tsfile.file.metadata.enums.TSEncoding;
+import cn.edu.tsinghua.tsfile.timeseries.write.TsFileWriter;
+import cn.edu.tsinghua.tsfile.timeseries.write.desc.MeasurementDescriptor;
 import cn.edu.tsinghua.tsfile.timeseries.write.record.DataPoint;
 import cn.edu.tsinghua.tsfile.timeseries.write.record.TSRecord;
 import cn.edu.tsinghua.tsfile.timeseries.write.record.datapoint.FloatDataPoint;
-import cn.edu.tsinghua.tsfile.timeseries.write.record.datapoint.IntDataPoint;
 
 public class TsFileWriteTest {
 
 	public static void main(String args[]) {
 		try {
-			TsFileWriter tsFileWriter=new TsFileWriter(new File("test.ts"));
-			
-			//add measurements
+			TsFileWriter tsFileWriter = new TsFileWriter(new File("test1.ts"));
+
+			// add measurements
 			tsFileWriter.addMeasurement(new MeasurementDescriptor("cpu_utility", TSDataType.FLOAT, TSEncoding.TS_2DIFF));
-			tsFileWriter.addMeasurement(new MeasurementDescriptor("memory_utility", TSDataType.FLOAT, TSEncoding.TS_2DIFF));		
-			
-			//construct TSRecord
-			TSRecord tsRecord=new TSRecord(1000, "hxd");
-			DataPoint dPoint1=new FloatDataPoint("cpu_utility", 90.0f);
-			DataPoint dPoint2=new FloatDataPoint("memory_utility", 80.0f);
+			tsFileWriter.addMeasurement(new MeasurementDescriptor("memory_utility", TSDataType.FLOAT, TSEncoding.TS_2DIFF));
+
+			// construct TSRecord
+			TSRecord tsRecord = new TSRecord(1000, "hxd");
+			DataPoint dPoint1 = new FloatDataPoint("cpu_utility", 90.0f);
+			DataPoint dPoint2 = new FloatDataPoint("memory_utility", 80.0f);
 			tsRecord.addTuple(dPoint1);
 			tsRecord.addTuple(dPoint2);
-			
-			//write TSRecord to TsFile
+
+			// write TSRecord to TsFile
 			tsFileWriter.write(tsRecord);
-			
-			//close TsFile
+
+			// close TsFile
 			tsFileWriter.close();
 		} catch (Throwable e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 	}
+
 }
 ```
 
