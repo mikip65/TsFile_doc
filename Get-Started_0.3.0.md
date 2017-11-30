@@ -134,7 +134,7 @@ An example is shown as follow:
 
 You should first install tsfile to your local maven repository.
 
-reference: Installation_0.3.0.md
+reference: [Installation_0.3.0](https://github.com/thulab/tsfile/wiki/Installation_0.3.0)
 
 
 
@@ -548,7 +548,7 @@ The method ```query()``` can be used to read from a TsFile. In class ```TsFile``
 
 You should first install tsfile to your local maven repository.
 
-reference: Installation_0.3.0.md
+reference: [Installation_0.3.0](https://github.com/thulab/tsfile/wiki/Installation_0.3.0)
 
 
 ```java
