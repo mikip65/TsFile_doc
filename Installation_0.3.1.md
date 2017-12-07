@@ -35,7 +35,7 @@ There are two ways to use TsFile in your own project.
 		<dependency>
 		   <groupId>cn.edu.tsinghua</groupId>
 		   <artifactId>tsfile</artifactId>
-		   <version>0.3.0</version>
+		   <version>0.3.1</version>
 		</dependency>
 	  ```
 	  
@@ -47,6 +47,6 @@ There are two ways to use TsFile in your own project.
 		<dependency>
 		   <groupId>cn.edu.tsinghua</groupId>
 		   <artifactId>tsfile</artifactId>
-		   <version>0.3.0</version>
+		   <version>0.3.1</version>
 		</dependency>
 	  ```
