@@ -8,7 +8,7 @@ There are two ways to use TsFile in your own project.
 	* Compile the source codes and build to jars
 	
 		```
-		git clone https://github.com/thulab/tsfile.git
+		git clone https://github.com/apache/incubator-iotdb.git
 		cd tsfile/
 		sh package.sh
 		```
@@ -21,7 +21,7 @@ There are two ways to use TsFile in your own project.
 	* Get the source codes
 	
 		```
-		git clone https://github.com/thulab/tsfile.git
+		git clone https://github.com/apache/incubator-iotdb.git
 		```
 	* Compile the source codes and deploy 
 		
@@ -32,11 +32,11 @@ There are two ways to use TsFile in your own project.
 	* add dependencies into your project:
 	
 	  ```
-		<dependency>
-		   <groupId>cn.edu.tsinghua</groupId>
+		 <dependency>
+		   <groupId>org.apache.iotdb</groupId>
 		   <artifactId>tsfile</artifactId>
-		   <version>0.7.0</version>
-		</dependency>
+		   <version>0.8.0-SNAPSHOT</version>
+		 </dependency>
 	  ```
 	  
 	Or, you can download the dependencies from official Maven reporistory:
@@ -44,9 +44,9 @@ There are two ways to use TsFile in your own project.
 	* add dependencies into your project:
 	
 	  ```
-		<dependency>
-		   <groupId>cn.edu.tsinghua</groupId>
+		 <dependency>
+		   <groupId>org.apache.iotdb</groupId>
 		   <artifactId>tsfile</artifactId>
-		   <version>0.7.0</version>
-		</dependency>
+		   <version>0.8.0-SNAPSHOT</version>
+		 </dependency>
 	  ```
