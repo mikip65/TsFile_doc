@@ -4,11 +4,11 @@ Now, you’re ready to start doing some awesome things with TsFile. This section
 ### Time-series Data
 A time-series is considered as a set of quadruples. A quadruple is defined as (deltaObject, measurement, time, value).
 
-* **deltaObject**: In many stituations, a device which contains many sensors can be considered as a deltaObject.
+* **deltaObject**: In many situations, a device which contains many sensors can be considered as a deltaObject.
 * **measurement**: A sensor can be considered as a measurement
 
 
-Table 1 illustates a set of time-series data. The set showed in the following table contains one deltaObject named "device\_1" with three measurements named "sensor\_1", "sensor\_2" and "sensor\_3". 
+Table 1 illustrates a set of time-series data. The set showed in the following table contains one deltaObject named "device\_1" with three measurements named "sensor\_1", "sensor\_2" and "sensor\_3". 
 
 <center>
 <table style="text-align:center">
@@ -158,7 +158,7 @@ reference: [Installation_0.7.0](https://github.com/thulab/tsfile/wiki/Installati
 
 
 
-##### Writing Tsfile by using json schema
+##### Writing TsFile by using json schema
 
 ```java
 package org.apache.iotdb.tsfile;
@@ -318,7 +318,7 @@ public class TsFileWrite {
 
 ```
 
-##### Writing Tsfile directly without defining the schema by json
+##### Writing TsFile directly without defining the schema by json
 
 ```java
 package org.apache.iotdb.tsfile;
@@ -454,9 +454,9 @@ The set of time-series data in section "Time-series Data" is used here for a con
 
 #### Definition of Path
 
-A path reprensents a series instance in TsFile. In the example given above, "device\_1.sensor\_1" is a path.
+A path represents a series instance in TsFile. In the example given above, "device\_1.sensor\_1" is a path.
 
-In read interfaces, The parameter ```paths``` indicates the measurements that will be selected.
+In read interfaces, The parameter ```paths``` indicates the measurements to be selected.
 
 Path instance can be easily constructed through the class ```Path```. For example:
 
@@ -478,22 +478,28 @@ paths.add(new Path("device_1.sensor_3"));
 #### Definition of Filter
 
 ##### Usage Scenario
-Filter is used in TsFile reading process. 
+Filter is used in TsFile reading process to select data. 
 
-##### FilterExpression
-A filter expression consists of FilterSeries and FilterOperators.
+##### IExpression
+The IExpression is a filter expression and it will be passed to our final query call.
+We create different `FilterSeries` and  use `FilterOperators` to combine them to our final IExpression object.
 
 * **FilterSeries**
 	
 	There are two kinds of FilterSeries.
 	
-	 * FilterSeriesType.TIME_FILTER: used to construct a filter for `time` in time-series data.
+	 * TIME_FILTER: used to construct a filter for `time` in time-series data.
 	 	
 	 	```
-		FilterSeries timeSeries = FilterFactory.timeFilterSeries();
+	 	IExpression timeFilter = new GlobalTimeExpression(Filter);
+	 	
+	 		 		 * Lt: Less than
+                	 * Gt: Greater than
+                	 * Eq: Equals
+       * NotEq: Not equals
 	 	```
 	 	
-	 * FilterSeriesType.VALUE_FILTER: used to construct a filter for `value` in time-series data.
+	 * VALUE_FILTER: used to construct a filter for `value` in time-series data.
 	 	
 	 	```
 	 	FilterSeries valueSeries = FilterFactory.intFilterSeries(device_1, sensor_1, VALUE_FILTER);
@@ -506,10 +512,6 @@ A filter expression consists of FilterSeries and FilterOperators.
 
 	**Basic filter operation:**
 
-	 * Lt: Less than
-	 * Gt: Greater than
-	 * Eq: Equals
-	 * NotEq: Not equals
 	 * Not: Flip a filter
 	 * And(left, right): Conjunction of two filters
 	 * Or(left, right): Disjunction of two filters
@@ -645,106 +647,110 @@ The method ```query()``` can be used to read from a TsFile. In class ```TsFile``
 
 #### Example
 
-You should first install tsfile to your local maven repository.
+You should install TsFile to your local maven repository.
 
 reference: [Installation_0.4.0](https://github.com/thulab/tsfile/wiki/Installation_0.4.0)
 
 
 ```java
 /**
- * The class is to show how to read TsFile file named "test.ts".
- * The TsFile file "test.ts" is generated from class TsFileWrite1 or class TsFileWrite2, 
- * they generate the same TsFile file by two different ways
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
-package cn.edu.tsinghua.tsfile;
-
-import cn.edu.tsinghua.tsfile.timeseries.basis.TsFile;
-import cn.edu.tsinghua.tsfile.timeseries.filter.definition.FilterExpression;
-import cn.edu.tsinghua.tsfile.timeseries.filter.definition.FilterFactory;
-import cn.edu.tsinghua.tsfile.timeseries.filter.definition.filterseries.FilterSeriesType;
-import cn.edu.tsinghua.tsfile.timeseries.read.TsRandomAccessLocalFileReader;
-import cn.edu.tsinghua.tsfile.timeseries.read.query.QueryDataSet;
-import cn.edu.tsinghua.tsfile.timeseries.read.support.Path;
-
+package org.apache.iotdb.tsfile;
 import java.io.IOException;
 import java.util.ArrayList;
+import org.apache.iotdb.tsfile.read.ReadOnlyTsFile;
+import org.apache.iotdb.tsfile.read.TsFileSequenceReader;
+import org.apache.iotdb.tsfile.read.common.Path;
+import org.apache.iotdb.tsfile.read.expression.IExpression;
+import org.apache.iotdb.tsfile.read.expression.QueryExpression;
+import org.apache.iotdb.tsfile.read.expression.impl.BinaryExpression;
+import org.apache.iotdb.tsfile.read.expression.impl.GlobalTimeExpression;
+import org.apache.iotdb.tsfile.read.expression.impl.SingleSeriesExpression;
+import org.apache.iotdb.tsfile.read.filter.TimeFilter;
+import org.apache.iotdb.tsfile.read.filter.ValueFilter;
+import org.apache.iotdb.tsfile.read.query.dataset.QueryDataSet;
 
+/**
+ * The class is to show how to read TsFile file named "testDirect.tsfile".
+ * The TsFile file "testDirect.tsfile" is generated from class TsFileWrite.
+ * It generates the same TsFile(testDirect.tsfile and testWithJson.tsfile) file by two different ways
+ * Run TsFileWrite to generate the testDirect.tsfile first
+ */
 public class TsFileRead {
+  private static void queryAndPrint(ArrayList<Path> paths, ReadOnlyTsFile readTsFile, IExpression statement)
+          throws IOException {
+    QueryExpression queryExpression = QueryExpression.create(paths, statement);
+    QueryDataSet queryDataSet = readTsFile.query(queryExpression);
+    while (queryDataSet.hasNext()) {
+      System.out.println(queryDataSet.next());
+    }
+    System.out.println("------------");
+  }
 
-	public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws IOException {
 
-		String path = "test.ts";
+    // file path
+    String path = "testDirect.tsfile";
 
-		// read example : no filter
-		TsRandomAccessLocalFileReader input = new TsRandomAccessLocalFileReader(path);
-		TsFile readTsFile = new TsFile(input);
-		ArrayList<Path> paths = new ArrayList<>();
-		paths.add(new Path("device_1.sensor_1"));
-		paths.add(new Path("device_1.sensor_2"));
-		paths.add(new Path("device_1.sensor_3"));
-		QueryDataSet queryDataSet = readTsFile.query(paths, null, null);
-		while (queryDataSet.hasNextRecord()) {
-			System.out.println(queryDataSet.getNextRecord());
-		}
-		System.out.println("------------");
+    // create reader and get the readTsFile interface
+    TsFileSequenceReader reader = new TsFileSequenceReader(path);
+    ReadOnlyTsFile readTsFile = new ReadOnlyTsFile(reader);
+    // use these paths(all sensors) for all the queries
+    ArrayList<Path> paths = new ArrayList<>();
+    paths.add(new Path("device_1.sensor_1"));
+    paths.add(new Path("device_1.sensor_2"));
+    paths.add(new Path("device_1.sensor_3"));
 
-		// time filter : 4 <= time < 10
-		FilterExpression timeFilter = FilterFactory.and(FilterFactory.gtEq(FilterFactory.timeFilterSeries(), 4L, true),
-				FilterFactory.ltEq(FilterFactory.timeFilterSeries(), 10L, false));
-		input = new TsRandomAccessLocalFileReader(path);
-		readTsFile = new TsFile(input);
-		paths = new ArrayList<>();
-		paths.add(new Path("device_1.sensor_1"));
-		paths.add(new Path("device_1.sensor_2"));
-		paths.add(new Path("device_1.sensor_3"));
-		queryDataSet = readTsFile.query(paths, timeFilter, null);
-		while (queryDataSet.hasNextRecord()) {
-			System.out.println(queryDataSet.getNextRecord());
-		}
-		System.out.println("------------");
+    // no filter, should select 1 2 3 4 6 7 8
+    queryAndPrint(paths, readTsFile, null);
 
-		// value filter : device_1.sensor_2 < 20
-		FilterExpression valueFilter = FilterFactory
-				.ltEq(FilterFactory.intFilterSeries("device_1", "sensor_2", FilterSeriesType.VALUE_FILTER), 20, false);
-		input = new TsRandomAccessLocalFileReader(path);
-		readTsFile = new TsFile(input);
-		paths = new ArrayList<>();
-		paths.add(new Path("device_1.sensor_1"));
-		paths.add(new Path("device_1.sensor_2"));
-		paths.add(new Path("device_1.sensor_3"));
-		queryDataSet = readTsFile.query(paths, null, valueFilter);
-		while (queryDataSet.hasNextRecord()) {
-			System.out.println(queryDataSet.getNextRecord());
-		}
-		System.out.println("------------");
+    // time filter : 4 <= time <= 10, should select 4 6 7 8
+    IExpression timeFilter = BinaryExpression.and(new GlobalTimeExpression(TimeFilter.gtEq(4L)),
+        new GlobalTimeExpression(TimeFilter.ltEq(10L)));
+    queryAndPrint(paths, readTsFile, timeFilter);
 
-		// time filter : 4 <= time < 10, value filter : device_1.sensor_3 > 20
-		timeFilter = FilterFactory.and(FilterFactory.gtEq(FilterFactory.timeFilterSeries(), 4L, true),
-				FilterFactory.ltEq(FilterFactory.timeFilterSeries(), 10L, false));
-		valueFilter = FilterFactory
-				.gtEq(FilterFactory.intFilterSeries("device_1", "sensor_3", FilterSeriesType.VALUE_FILTER), 20, false);
-		input = new TsRandomAccessLocalFileReader(path);
-		readTsFile = new TsFile(input);
-		paths = new ArrayList<>();
-		paths.add(new Path("device_1.sensor_1"));
-		paths.add(new Path("device_1.sensor_2"));
-		paths.add(new Path("device_1.sensor_3"));
-		queryDataSet = readTsFile.query(paths, timeFilter, valueFilter);
-		while (queryDataSet.hasNextRecord()) {
-			System.out.println(queryDataSet.getNextRecord());
-		}
-	}
+    // value filter : device_1.sensor_2 <= 20, should select 1 2 4 6 7
+    IExpression valueFilter = new SingleSeriesExpression(new Path("device_1.sensor_2"),
+        ValueFilter.ltEq(20));
+    queryAndPrint(paths, readTsFile, valueFilter);
+
+    // time filter : 4 <= time <= 10, value filter : device_1.sensor_3 >= 20, should select 4 7 8
+    timeFilter = BinaryExpression.and(new GlobalTimeExpression(TimeFilter.gtEq(4L)),
+        new GlobalTimeExpression(TimeFilter.ltEq(10L)));
+    valueFilter = new SingleSeriesExpression(new Path("device_1.sensor_3"), ValueFilter.gtEq(20));
+    IExpression finalFilter = BinaryExpression.and(timeFilter, valueFilter);
+    queryAndPrint(paths, readTsFile, finalFilter);
+
+    //close the reader when you left
+    reader.close();
+  }
 }
 ```
 
 ### User-specified config file path
 
-Default config file tsfile-format.properties is located at tsfile/conf/ directory. If you want to use your own path, you can:
-```Java
+Default config file `tsfile-format.properties.template` is located at `/tsfile/src/main/resources` directory. If you want to use your own path, you can:
+```
 System.setProperty(SystemConstant.TSFILE_CONF, "your config file path");
 ```
 and then call:
-```Java
+```
 TSFileConfig config = TSFileDescriptor.getInstance().getConfig();
 ```
 
