@@ -12,11 +12,11 @@ There are two ways to use TsFile in your own project.
 		cd tsfile/
 		sh package.sh
 		```
-		Then, all the jars can be get in folder named `lib/`. Import `lib/*.jar` to your project.
+		Then, all the jars can be get in folder named `lib/`. Import `lib/tsfile-0.8.0-SNAPSHOT-jar-with-dependencies.jar` to your project.
 	
 * Using as a maven dependency: 
 
-	Comiple source codes and deploy to your local repository in three steps:
+	Compile source codes and deploy to your local repository in three steps:
 
 	* Get the source codes
 	
@@ -39,9 +39,30 @@ There are two ways to use TsFile in your own project.
 		 </dependency>
 	  ```
 	  
-	Or, you can download the dependencies from official Maven reporistory:
+	Or, you can download the dependencies from official Maven repository:
 	
-	* add dependencies into your project:
+	* First, find your maven `settings.xml` on path: `${username}\.m2\settings.xml`
+	  , add this `<profile>` to `<profiles>`:
+	  ```
+	    <profile>
+           <id>allow-snapshots</id>
+              <activation><activeByDefault>true</activeByDefault></activation>
+           <repositories>
+             <repository>  
+      	<id>apache.snapshots</id>
+            <name>Apache Development Snapshot Repository</name>
+            <url>https://repository.apache.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+           </repositories>
+         </profile>
+	  ```
+	* Then add dependencies into your project:
 	
 	  ```
 		 <dependency>
