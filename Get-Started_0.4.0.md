@@ -152,9 +152,9 @@ An example is shown as follow:
 
 #### Example for writing TsFile
 
-You should install TsFile to your local maven repository first.
+You should install TsFile to your local maven repository.
 
-See reference: [Installation_0.7.0](https://github.com/thulab/tsfile/wiki/Installation_0.7.0)
+See reference: [Installation](./Installation_0.7.0.md)
 
 
 
@@ -495,7 +495,7 @@ We create one or more filter expressions and may use binary filter operators to 
 	 	Use the following relationships to get a `TimeFilter` object (value is a long int variable).
 	    <center>
         <table style="text-align:center">
-        	<tr><th>Relationship</th><th>Meaning</td></tr>
+        	<tr><th>Relationship</th><th>Description</td></tr>
         	<tr><td>TimeFilter.eq(value)</td><td>Choose the time equal to the value</td>
         	<tr><td>TimeFilter.lt(value)</td><td>Choose the time less than the value</td>
         	<tr><td>TimeFilter.gt(value)</td><td>Choose the time greater than the value</td>
@@ -596,24 +596,49 @@ The ReadOnlyTsFile class has two `query` method to perform a query.
 
 The query performed above will return a `QueryDataset` object.
 
-<center>
-        <table style="text-align:center">
-        	<tr><th>Relationship</th><th>Meaning</td></tr>
-        	<tr><td>TimeFilter.eq(value)</td><td>Choose the time equal to the value</td>
-        	<tr><td>TimeFilter.lt(value)</td><td>Choose the time less than the value</td>
-        	<tr><td>TimeFilter.gt(value)</td><td>Choose the time greater than the value</td>
-        	<tr><td>TimeFilter.ltEq(value)</td><td>Choose the time less than or equal to the value</td>
-        	<tr><td>TimeFilter.gtEq(value)</td><td>Choose the time greater than or equal to the value</td>
-        	<tr><td>TimeFilter.notEq(value)</td><td>Choose the time not equal to the value</td>
-        	<tr><td>TimeFilter.not(TimeFilter)</td><td>Choose the time not satisfy another TimeFilter</td>
-        </table>
-        </center>
+Here's the useful interfaces for user.
 
-#### Example
+
+* `bool hasNext();`
+
+    Return true if this dataset still has elements.
+* `List<Path> getPaths()`
+
+    Get the paths in this data set.
+* `List<TSDataType> getDataTypes();` 
+
+   Get the data types. The class TSDataType is an enum class, the value will be one of the following:
+   
+       BOOLEAN,
+       INT32,
+       INT64,
+       FLOAT,
+       DOUBLE,
+       TEXT;
+ * `RowRecord next() throws IOException;`
+ 
+    Get the next record.
+    
+    The class `RowRecord` consists of a `long` timestamp and a `List<Field>` for data in different sensors,
+     we can use two getter methods to get them.
+     
+    ```
+    long getTimestamp();
+    List<Field> getFields();
+    ```
+    
+    To get data from one Field, use these method:
+    
+    ```
+    TSDataType getDataType();
+    Object getObjectValue();
+    ```
+
+#### Example for reading an existing TsFile
 
 You should install TsFile to your local maven repository.
 
-reference: [Installation](./Installation_0.7.0.md)
+See reference: [Installation](./Installation_0.7.0.md)
 
 
 ```java
